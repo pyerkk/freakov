@@ -6,7 +6,7 @@
 
 # 🌐 Bio-Link Profile Template
 
-A customizable bio-link profile page inspired by **[@jefer on guns.lol](https://guns.lol/jefer)**.  
+A customizable bio-link profile page inspired by my [guns.lol template](https://guns.lol/templates/a51af3a4-ffc7-49e0-8866-b44683d075ff) · 👤 [Visit my profile at guns.lol](https://guns.lol/jefer).  
 Everything you want to change lives in **one single file**: `js/config.js`.
 
 [**Live Demo**](https://gunslol-template.pages.dev/)
@@ -179,5 +179,9 @@ This project is open source and free to use. Credit is appreciated but not requi
 ---
 
 <div align="center">
-Made with 🖤 — inspired by <a href="https://guns.lol/jefer">guns.lol/jefer</a>
+
+Made with 🖤 — based on my <a href="https://guns.lol/templates/a51af3a4-ffc7-49e0-8866-b44683d075ff">guns.lol template</a>
+
+🔗 Check out my live profile: <a href="https://guns.lol/jefer">guns.lol/jefer</a>
+
 </div>
