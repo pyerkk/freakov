@@ -59,11 +59,11 @@ const CONFIG = {
   // Add, remove or reorder. "icon" = path inside assets/icons/
   // ----------------------------------------------------------
   socialLinks: [
-    { name: "Instagram", url: "https://instagram.com/jota.0ff",         icon: "assets/icons/instagram.png" },
-    { name: "Spotify",   url: "https://open.spotify.com/user/tu_usuario", icon: "assets/icons/spotify.png"   },
-    { name: "TikTok",    url: "https://www.tiktok.com/@jota.txt",           icon: "assets/icons/tiktok.png"    },
-    { name: "OnlyFans",  url: "https://onlyfans.com/jotaof",          icon: "assets/icons/onlyfans.png"  },
-    { name: "Github",  url: "https://github.com/jefersc",          icon: "assets/icons/github.png"  },
+    { name: "Instagram", url: "https://instagram.com/user",         icon: "assets/icons/instagram.png" },
+    { name: "Spotify",   url: "https://open.spotify.com/user", icon: "assets/icons/spotify.png"   },
+    { name: "TikTok",    url: "https://www.tiktok.com/user",           icon: "assets/icons/tiktok.png"    },
+    { name: "OnlyFans",  url: "https://onlyfans.com/user",          icon: "assets/icons/onlyfans.png"  },
+    { name: "Github",  url: "https://github.com/user",          icon: "assets/icons/github.png"  },
 ,
   ],
   iconSize:         "36px",

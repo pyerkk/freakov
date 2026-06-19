@@ -9,7 +9,7 @@
 A customizable bio-link profile page inspired by **[@jefer on guns.lol](https://guns.lol/jefer)**.  
 Everything you want to change lives in **one single file**: `js/config.js`.
 
-[**Live Demo**](https://tu-usuario.github.io/perfil-template)
+[**Live Demo**](https://gunslol-template.pages.dev/)
 
 </div>
 
