@@ -35,7 +35,7 @@ Everything you want to change lives in **one single file**: `js/config.js`.
 ## 📁 Project Structure
 
 ```
-perfil-template/
+gunslol-template/
 ├── index.html              # Page structure — no need to edit
 ├── css/
 │   └── style.css           # Visual styles — no need to edit
@@ -149,7 +149,7 @@ socialLinks: [
 | Image | Where to put it | Recommended size |
 |---|---|---|
 | Profile photo | `assets/avatar.jpg` | At least 200×200px, square |
-| Background video | `assets/background.mp4` | Any resolution, keep it under 20MB |
+| Background video | `assets/background.mp4` | Any resolution, keep the file size reasonable |
 | Custom cursor | `assets/cursor.png` | 32×32px or 64×64px, transparent background |
 | Browser tab icon | `assets/favicon.png` | 32×32px |
 | Badges / roles | `assets/badges/` | Any size, `.gif` works for animated |
