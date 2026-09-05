@@ -59,7 +59,7 @@ const CONFIG = {
   socialLinks: [
     { name: "Telegram", url: "https://t.me/kiriokoo",         icon: "assets/icons/instagram.png" },
   ],
-  iconSize:         "36px",
+  iconSize:         "80px",
   iconBorderRadius: "8px",
   iconGlowColor:    "#ffd1d1",
 
