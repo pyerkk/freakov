@@ -7,7 +7,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   // PROFILE
   // ----------------------------------------------------------
-  profileName:   "if6was9",      // name shown on the card
+  profileName:   "i6w9",      // name shown on the card
   nameTooltip:   "wtff",         // tooltip on hover over the name
   nameEffect:    "noise",         // "noise" = TV interference | "none" = plain text
   statusText:    "?", // text below the name (typewriter effect)
@@ -27,7 +27,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   avatarSize:       "118px",
   // animated Discord-style decoration — leave "" to disable
-  avatarDecoration: "https://cdn.discordapp.com/avatar-decoration-presets/a_da532f804b47f1681006c2996eb07b2a.png",
+  avatarDecoration: "",
 
   // ----------------------------------------------------------
   // BADGES / ROLES
@@ -36,18 +36,17 @@ const CONFIG = {
   badges: [
     { icon: "assets/badges/owner.png",    label: "Owner"    },
     { icon: "assets/badges/verified.png", label: "Verified" },
-    { icon: "assets/badges/partner.png",  label: "Partner"  },
     { icon: "assets/badges/hate.gif",     label: "hate"     },
   ],
-  badgeSize:                "22px",
+  badgeSize:                "18px",
   badgeContainerBackground: "rgba(172, 200, 255, 0.08)",
   badgeContainerBorder:     "2px solid rgba(172, 200, 255, 0.04)",
 
   // ----------------------------------------------------------
   // DISCORD (static — no API, edit manually)
   // ----------------------------------------------------------
-  discordUsername: "Jofagg_",
-  discordStatus:   "acalme-se vadia...",
+  discordUsername: "tearmyveins",
+  discordStatus:   "сидел под прокси в пять утра",
   discordAvatar:   "assets/discord-avatar.jpg",
   discordAvatarSize:   "74px",
   discordAvatarBorder: "2px solid rgba(200, 27, 27, 0.15)",
@@ -60,11 +59,6 @@ const CONFIG = {
   // ----------------------------------------------------------
   socialLinks: [
     { name: "Instagram", url: "https://instagram.com/user",         icon: "assets/icons/instagram.png" },
-    { name: "Spotify",   url: "https://open.spotify.com/user", icon: "assets/icons/spotify.png"   },
-    { name: "TikTok",    url: "https://www.tiktok.com/user",           icon: "assets/icons/tiktok.png"    },
-    { name: "OnlyFans",  url: "https://onlyfans.com/user",          icon: "assets/icons/onlyfans.png"  },
-    { name: "Github",  url: "https://github.com/user",          icon: "assets/icons/github.png"  },
-,
   ],
   iconSize:         "36px",
   iconBorderRadius: "8px",
