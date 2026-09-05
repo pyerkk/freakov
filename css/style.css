@@ -424,7 +424,7 @@ body {
 }
 
 #discord-activity {
-  color: rgba(172, 200, 255, 0.6);
+  color: rgba(255, 255, 255, 1);
   font-style: italic;
   font-weight: 400;
   font-size: 13.5px;
