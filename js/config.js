@@ -70,8 +70,9 @@ const CONFIG = {
   cardBackground:      "rgba(255, 255, 255, 0.05)",
   cardBorder:          "none",
   cardRevealDelay:     300,        // ms between entry click and card appearance
-  cardTiltIntensity:   5,         // tilt degrees on mouse move (0 = disabled)
-  cardTiltPerspective: "1500px",   // 3D perspective (lower = more dramatic)
+  cardTiltIntensity:   2,         // Уменьшаем силу наклона до минимума (было 5)
+  cardTiltPerspective: "3000px",  // Делаем 3D-искажение очень мягким и далеким (было 1500px)
+
 
   // ----------------------------------------------------------
   // DISCORD BOX (presence box inside the card)
