@@ -7,6 +7,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   // PROFILE
   // ----------------------------------------------------------
+  skipEntryScreen: true,          // ОТКЛЮЧАЕТ стартовый экран со звездой (сайт откроется сразу)
   profileName:   "i6w9",      // name shown on the card
   nameTooltip:   "wtff",         // tooltip on hover over the name
   nameEffect:    "noise",         // "noise" = TV interference | "none" = plain text
@@ -56,7 +57,7 @@ const CONFIG = {
   // Add, remove or reorder. "icon" = path inside assets/icons/
   // ----------------------------------------------------------
   socialLinks: [
-    { name: "Instagram", url: "https://instagram.com/user",         icon: "assets/icons/instagram.png" },
+    { name: "Instagram", url: "",         icon: "assets/icons/instagram.png" },
   ],
   iconSize:         "36px",
   iconBorderRadius: "8px",
@@ -66,7 +67,7 @@ const CONFIG = {
   // CARD
   // ----------------------------------------------------------
   cardMaxWidth:        "35rem",
-  cardBorderRadius:    "85px",
+  cardBorderRadius:    "24px",     // Изменено на аккуратные современные углы вместо круглых 85px
   cardBackground:      "rgba(255, 255, 255, 0.05)",
   cardBorder:          "none",
   cardRevealDelay:     300,        // ms between entry click and card appearance
