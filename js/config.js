@@ -57,7 +57,7 @@ const CONFIG = {
   // Add, remove or reorder. "icon" = path inside assets/icons/
   // ----------------------------------------------------------
   socialLinks: [
-    { name: "Instagram", url: "",         icon: "assets/icons/instagram.png" },
+    { name: "Telegram", url: "https://t.me/kiriokoo",         icon: "assets/icons/instagram.png" },
   ],
   iconSize:         "36px",
   iconBorderRadius: "8px",
