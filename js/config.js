@@ -27,7 +27,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   avatarSize:       "118px",
   // animated Discord-style decoration — leave "" to disable
-  avatarDecoration: "none",
+  avatarDecoration: " ",
 
   // ----------------------------------------------------------
   // BADGES / ROLES
@@ -47,9 +47,9 @@ const CONFIG = {
   discordStatus:   "сидел под прокси в пять утра",
   discordAvatar:   "assets/discord-avatar.jpg",
   discordAvatarSize:   "74px",
-  discordAvatarBorder: "2px solid rgba(200, 27, 27, 0.15)",
+  discordAvatarBorder: "2px solid rgba(255, 255, 255, 0.2)",
   // status: "online" | "idle" | "dnd" | "offline"
-  discordPresenceStatus: "online",
+  discordPresenceStatus: "idle",
 
   // ----------------------------------------------------------
   // SOCIAL LINKS
@@ -65,30 +65,30 @@ const CONFIG = {
   // ----------------------------------------------------------
   // CARD
   // ----------------------------------------------------------
-  cardMaxWidth:        "44rem",
+  cardMaxWidth:        "35rem",
   cardBorderRadius:    "85px",
-  cardBackground:      "rgba(200, 27, 27, 0.03)",
+  cardBackground:      "rgba(255, 255, 255, 0.05)",
   cardBorder:          "none",
   cardRevealDelay:     300,        // ms between entry click and card appearance
-  cardTiltIntensity:   15,         // tilt degrees on mouse move (0 = disabled)
-  cardTiltPerspective: "1000px",   // 3D perspective (lower = more dramatic)
+  cardTiltIntensity:   5,         // tilt degrees on mouse move (0 = disabled)
+  cardTiltPerspective: "1500px",   // 3D perspective (lower = more dramatic)
 
   // ----------------------------------------------------------
   // DISCORD BOX (presence box inside the card)
   // ----------------------------------------------------------
-  discordBoxBackground: "rgba(172, 200, 255, 0.07)",
-  discordBoxRadius:     "14px",
-  discordBoxBorder:     "2px solid rgba(172, 200, 255, 0.05)",
+  discordBoxBackground: "rgba(255, 255, 255, 0.04)", // Приятный полупрозрачный серый фон
+  discordBoxRadius:     "14px",                      // Оставляем аккуратные углы
+  discordBoxBorder:     "1px solid rgba(255, 255, 255, 0.1)", // Тонкая серая обводка (1px смотрится изящнее)
 
   // ----------------------------------------------------------
   // COLORS / STYLE
   // ----------------------------------------------------------
-  usernameGlow: "0 0 16.5px #acc8ff", // name glow ("none" to disable)
+  usernameGlow: "0 0 16.5px #ffffff", // name glow ("none" to disable)
 
   // ----------------------------------------------------------
   // BACKGROUND PARTICLES
   // ----------------------------------------------------------
-  particleColor:            "#b31f1f",
+  particleColor: "#aaaaaa",
   particleCount:            70,
   particleFallDuration:     10,    // seconds to cross the screen top to bottom
   particleSwayDuration:     3,     // seconds per horizontal sway cycle
@@ -98,7 +98,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   // CURSOR TRAIL
   // ----------------------------------------------------------
-  shootingStarColors:       ["#ffd87a", "#ffc847", "#fff4cc"],
+  shootingStarColors:     ["#ffffff", "#cccccc", "#aaaaaa"],
   shootingStarSize:         3,
   shootingStarMaxParticles: 4,     // particles spawned per mouse movement
   shootingStarFadeFrames:   30,    // frames until each particle fades out
