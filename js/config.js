@@ -10,7 +10,7 @@ const CONFIG = {
   profileName:   "i6w9",      // name shown on the card
   nameTooltip:   "wtff",         // tooltip on hover over the name
   nameEffect:    "noise",         // "noise" = TV interference | "none" = plain text
-  statusText:    "?", // text below the name (typewriter effect)
+  statusText:    "^_^ ?? ^3^ ?? >-< ?? >3<", // text below the name (typewriter effect)
   tabTitle:      "@it6was9",      // animated browser tab title
   entrySymbol:   "⛧",            // symbol shown on the entry screen
 
@@ -27,7 +27,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   avatarSize:       "118px",
   // animated Discord-style decoration — leave "" to disable
-  avatarDecoration: "",
+  avatarDecoration: "none",
 
   // ----------------------------------------------------------
   // BADGES / ROLES
@@ -35,8 +35,6 @@ const CONFIG = {
   // ----------------------------------------------------------
   badges: [
     { icon: "assets/badges/owner.png",    label: "Owner"    },
-    { icon: "assets/badges/verified.png", label: "Verified" },
-    { icon: "assets/badges/hate.gif",     label: "hate"     },
   ],
   badgeSize:                "18px",
   badgeContainerBackground: "rgba(172, 200, 255, 0.08)",
