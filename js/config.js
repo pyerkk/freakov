@@ -27,7 +27,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   avatarSize:       "118px",
   // animated Discord-style decoration — leave "" to disable
-  avatarDecoration: " ",
+  avatarDecoration: "",
 
   // ----------------------------------------------------------
   // BADGES / ROLES
@@ -37,8 +37,8 @@ const CONFIG = {
     { icon: "assets/badges/owner.png",    label: "Owner"    },
   ],
   badgeSize:                "18px",
-  badgeContainerBackground: "rgba(172, 200, 255, 0.08)",
-  badgeContainerBorder:     "2px solid rgba(172, 200, 255, 0.04)",
+  badgeContainerBackground: "rgba(255, 255, 255, 0.04)", // Стильный полупрозрачный серый фон
+  badgeContainerBorder:     "1px solid rgba(255, 255, 255, 0.1)", // Тонкая серая обводка (1px смотрится изящнее)
 
   // ----------------------------------------------------------
   // DISCORD (static — no API, edit manually)
