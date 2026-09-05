@@ -471,3 +471,7 @@ body {
 }
 
 .social-icon:hover { transform: scale(1.15); }
+
+#avatar-decoration {
+    display: none !important;
+}
