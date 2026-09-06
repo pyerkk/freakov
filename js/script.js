@@ -131,17 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
       discordInfo.appendChild(musicBox);
     }
 
-      <div class="progress-bar-bg">
-        <div id="music-progress" class="progress-bar-fill"></div>
-      </div>
-    `;
-
-    
-    const discordInfo = document.getElementById("discord-info");
-    if (discordInfo) {
-      discordInfo.appendChild(musicBox);
-    }
-
     // Слушаем клик по стартовому экрану, чтобы запустить таймер синхронно с музыкой
     document.getElementById("entry-screen").addEventListener("click", () => {
       const duration = 100; // 1 минута 40 секунд = 100 секунд
