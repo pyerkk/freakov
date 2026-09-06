@@ -71,8 +71,8 @@ const CONFIG = {
   cardBackground:      "rgba(255, 255, 255, 0.3)", // Меняем на полупрозрачный темный!
   cardBorder:          "none",
   cardRevealDelay:     300,        
-  cardTiltIntensity:   0,                        // Обязательно 0!
-  cardTiltPerspective: "0px",                    // Обязательно 0px!
+  cardTiltIntensity:   2,                        // Обязательно 0!
+  cardTiltPerspective: "3000px",                    // Обязательно 0px!
 
   // ----------------------------------------------------------
   // DISCORD BOX (presence box inside the card)
