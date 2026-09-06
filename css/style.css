@@ -483,13 +483,13 @@ body {
     display: none !important;
 }
 /* ============================================================
-   СТИЛЬНЫЙ УГЛОВОЙ ВИДЖЕТ СЧЁТЧИКА (МАТОВОЕ СТЕКЛО)
+   СТИЛЬНЫЙ УГЛОВОЙ ВИДЖЕТ СЧЁТЧИКА (МЯГКОЕ СТЕКЛО БЕЗ КОНТУРА)
    ============================================================ */
 .views-counter-corner {
   position: fixed;
   bottom: 20px;   /* Отступ от нижнего края экрана */
   right: 20px;    /* Отступ от правого края экрана */
-  z-index: 9;     /* Находится над фоном, но под экраном входа */
+  z-index: 9;     
 
   display: flex;
   align-items: center;
@@ -497,68 +497,37 @@ body {
   gap: 6px;       /* Расстояние между глазом и цифрой */
   padding: 8px 14px;
 
-  /* Эффект матового стекла, в точности как у основного квадрата */
-  background: rgba(10, 10, 10, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  /* Точно такое же мягкое заблюренное стекло, как у основы */
+  background: rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
   
-  /* Идеально аккуратное сглаживание углов */
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  /* УБИРАЕМ КОНТУР: делаем плашку полностью бесшовной */
+  border: none !important;
+  border-radius: 12px !important;
   
-  /* Слегка прозрачный в обычном состоянии */
-  opacity: 0.6;
+  /* Стильный белый шрифт */
+  color: #ffffff !important;
+  font-family: sans-serif !important;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  opacity: 0.5; /* В покое он слегка прозрачный */
   transition: opacity 0.3s ease, transform 0.3s ease;
-
-  /* Убираем старую границу, так как делаем анимированную через маску */
-  border: none; 
 }
 
-/* Создаем ТОНКУЮ анимированную бело-серую рамку вокруг виджета */
-.views-counter-corner::before {
-  content: "";
-  position: absolute;
-  inset: -1.5px; /* Толщина рамки 1.5px */
-  border-radius: inherit;
-  padding: 1.5px; 
-  
-  /* Бело-серый градиент */
-  background: linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff);
-  background-size: 400% 400%;
-  
-  /* Магия: вырезаем центр градиента, оставляя только ободок */
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  
-  pointer-events: none;
-  z-index: -1;
-
-  /* Запуск анимации перелива (использует ту же borderGlow, что и основа) */
-  animation: borderGlow 10s linear infinite;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
-}
-
-/* При наведении мышки плашка становится ярче и чуть приподнимается */
+/* При наведении курсора мыши плашка загорается ярче и плавно приподнимается */
 .views-counter-corner:hover {
   opacity: 0.95;
   transform: translateY(-2px);
 }
 
-/* Стиль для эмодзи глаза */
 .eye-icon {
   font-size: 13px;
   opacity: 0.8;
-  color: #ffffff;
-}
-
-/* Стиль для текста цифры (ровный, аккуратный и белый) */
-#hitcount {
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: sans-serif; 
-  line-height: 1;
 }
 
 
