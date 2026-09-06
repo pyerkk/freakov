@@ -143,6 +143,9 @@ body {
    PROFILE CARD
    The card shape (background, corners) is always visible.
    ============================================================ */
+/* ============================================================
+   PROFILE CARD (БЕЗЛАГОВОЕ МАТОВОЕ СТЕКЛО И РАБОЧИЙ ГРАДИЕНТ)
+   ============================================================ */
 #profile-card {
   position: absolute;
   top: 50%;
@@ -156,61 +159,60 @@ body {
   width: min(92%, var(--card-max-width, 380px));
   padding: 26px;
 
-  /* Эффект глубокого матового заблюренного стекла */
-  background: rgba(10, 10, 10, 0.65) !important; 
+  /* 1. ИДЕАЛЬНОЕ ПРОЗРАЧНОЕ СТЕКЛО (Теперь точно заработает!) */
+  background: 
+    linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.7)) padding-box,
+    linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff) border-box !important;
+  
+  background-size: 100% 100%, 400% 400% !important;
+  
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
 
+  /* 2. РАБОЧАЯ ТОНКАЯ РАМКА: Задаем толщину 2px через прозрачный border */
+  border: 2px solid transparent !important;
   border-radius: var(--card-border-radius, 24px);
 
-  /* Идеальное центрирование по экрану */
+  /* 3. ИДЕАЛЬНЫЙ ЦЕНТР И ШЁЛКОВАЯ АНИМАЦИЯ ПАРЕНИЯ (Без лагов) */
   transform: translate(-50%, -50%) !important;
-  
-  /* Ультра-плавная анимация парения без покадровых лагов */
   animation: ultraSmoothFloat 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite !important;
+  
+  /* Разгружаем процессор и задействуем видеокарту */
   will-change: margin-top;
-
-  border: none !important;
   z-index: 1;
-}
-/* Бело-серая анимированная рамка строго по краям стекла */
-#profile-card::before {
-  content: "";
-  position: absolute;
-  inset: 0; 
-  border-radius: inherit;
-  padding: 2px; /* Толщина рамки 2px */
-  
-  /* Переливающийся бело-серый градиент */
-  background: linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff) !important;
-  background-size: 400% 400% !important;
-  
-  /* Магия вырезания: середина прозрачная, градиент остается только на контуре */
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  
-  pointer-events: none;
-  z-index: -1;
 
-  /* Независимый бесконечный перелив рамки */
-  animation: borderGlow 10s linear infinite !important;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+  /* Легкое неоновое свечение наружу */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.12);
 }
-/* АНИМАЦИЯ: Карточка парит мягко и без рывков */@keyframes ultraSmoothFloat {
+
+/* Полностью очищаем старый слой ::before, он нам больше не нужен и не будет ломать код */
+#profile-card::before {
+  display: none !important;
+}
+
+/* АНИМАЦИЯ 1: Бесконечный плавный перелив бело-серой рамки */
+#profile-card {
+  animation: 
+    ultraSmoothFloat 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite !important,
+    borderGlow 12s linear infinite !important;
+}
+
+/* Траектория плавного покачивания карточки вверх-вниз */
+@keyframes ultraSmoothFloat {
   0%, 100% {
     margin-top: 0px;
   }
   50% {
-    margin-top: -8px; /* Ровное вертикальное скольжение */
+    margin-top: -8px; 
   }
 }
-/* Анимация движения градиента внутри рамки */@keyframes borderGlow {
-  0%   { background-position: 0% 50%;   }
-  50%  { background-position: 100% 50%; }
-  100% { background-position: 0% 50%;   }
-}
 
+/* Траектория движения цветов по рамке */
+@keyframes borderGlow {
+  0%   { background-position: 0% 50%, 0% 50%;   }
+  50%  { background-position: 0% 50%, 100% 50%; }
+  100% { background-position: 0% 50%, 0% 50%;   }
+}
 
 
 
