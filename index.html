@@ -16,8 +16,7 @@
 
     <div id="main-content">
 
-      <!-- Hidden SVG filter for the name interference effect.
-           JS changes the seed every 40ms to animate it. -->
+      <!-- Hidden SVG filter for the name interference effect. -->
       <svg style="display:none" xmlns="http://w3.org">
         <defs>
           <filter id="name-filter" x="-10%" y="-20%" width="120%" height="140%">
@@ -43,41 +42,46 @@
 
       <!-- Profile card -->
       <div id="profile-card">
+        
+        <!-- НОВАЯ СТАБИЛЬНАЯ ОБЁРТКА ДЛЯ СТЕКЛА И РАМКИ -->
+        <div class="card-inner">
 
-        <!-- Section 1: avatar + name + status -->
-        <div id="profile-main">
-          <div id="avatar-wrapper">
-            <img id="avatar" src="" alt="avatar" />
-            <img id="avatar-decoration" src="" alt="" />
-          </div>
-          <div id="profile-info">
-            <div id="profile-name">
-              <div id="name-row">
-                <div class="name-wrapper">
-                  <span id="name-text"></span>
-                  <span class="name-tooltip" id="name-tooltip"></span>
-                </div>
-                <div id="badges"></div>
-              </div>
+          <!-- Section 1: avatar + name + status -->
+          <div id="profile-main">
+            <div id="avatar-wrapper">
+              <img id="avatar" src="" alt="avatar" />
+              <img id="avatar-decoration" src="" alt="" />
             </div>
-            <p id="profile-status"></p>
+            <div id="profile-info">
+              <div id="profile-name">
+                <div id="name-row">
+                  <div class="name-wrapper">
+                    <span id="name-text"></span>
+                    <span class="name-tooltip" id="name-tooltip"></span>
+                  </div>
+                  <div id="badges"></div>
+                </div>
+              </div>
+              <p id="profile-status"></p>
+            </div>
           </div>
-        </div>
 
-        <!-- Section 2: Discord presence (static, edit in config.js) -->
-        <div id="discord-presence">
-          <div id="discord-avatar-wrapper">
-            <img id="discord-avatar" src="" alt="discord avatar" />
-            <img id="discord-status-icon" src="" alt="" />
+          <!-- Section 2: Discord presence -->
+          <div id="discord-presence">
+            <div id="discord-avatar-wrapper">
+              <img id="discord-avatar" src="" alt="discord avatar" />
+              <img id="discord-status-icon" src="" alt="" />
+            </div>
+            <div id="discord-info">
+              <span id="discord-username"></span>
+              <span id="discord-activity"></span>
+            </div>
           </div>
-          <div id="discord-info">
-            <span id="discord-username"></span>
-            <span id="discord-activity"></span>
-          </div>
-        </div>
 
-        <!-- Section 3: social links (generated from config.js) -->
-        <div id="social-links"></div>
+          <!-- Section 3: social links -->
+          <div id="social-links"></div>
+
+        </div> <!-- Конец card-inner -->
 
       </div>
 
@@ -89,37 +93,31 @@
       <span id="hitcount">1653</span>
     </div>
 
-    <!-- Cursor sparkle trail canvas — above everything -->
+    <!-- Cursor sparkle trail canvas -->
     <canvas id="cursor-canvas"></canvas>
 
     <!-- Скрипт счётчика: делает строго +1 при первом клике на сайте -->
     <script>
       const START_COUNT = 1653; 
-      
       let storedViews = localStorage.getItem("freakov_single_click_views");
       if (!storedViews) {
         storedViews = START_COUNT;
         localStorage.setItem("freakov_single_click_views", storedViews);
       }
-      
       document.getElementById("hitcount").innerText = storedViews;
 
       document.addEventListener("click", () => {
         let alreadyClicked = sessionStorage.getItem("freakov_has_clicked");
-        
         if (!alreadyClicked) {
           let current = parseInt(localStorage.getItem("freakov_single_click_views")) || START_COUNT;
           current += 1;
-          
           localStorage.setItem("freakov_single_click_views", current);
           document.getElementById("hitcount").innerText = current;
-          
           sessionStorage.setItem("freakov_has_clicked", "true");
         }
       });
     </script>
 
-    <!-- config.js must load before script.js -->
     <script src="js/config.js"></script>
     <script src="js/script.js"></script>
   </body>
