@@ -210,9 +210,6 @@ body {
 /* Avatar */
 #avatar-wrapper {
   position: relative;
-Принял! Лови третью часть (строки 201–300).
-Здесь идут стили для аватарки, кастомных шрифтов имени и всплывающих подсказок.
-
   width: var(--avatar-size, 70px);
   height: var(--avatar-size, 70px);
   flex-shrink: 0;
