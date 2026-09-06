@@ -899,3 +899,12 @@ body::after {
   100% { transform: scaleY(1.0); }
 }
 
+/* Мягкое свечение карточки при наведении */
+#profile-card {
+  transition: transform 0.3s ease, box-shadow 0.4s ease !important;
+}
+
+#profile-card:hover {
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 
+              0 0 40px rgba(255, 255, 255, 0.02) !important;
+}
