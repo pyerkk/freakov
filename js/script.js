@@ -514,3 +514,15 @@ if (statusEl) {
     }, 1200);
   });
 }
+// Живые цифровые часы внутри карточки
+const clockBox = document.createElement("div");
+clockBox.style.cssText = "position:absolute; bottom:8px; left:16px; font-family:monospace; font-size:9px; color:rgba(255,255,255,0.18); letter-spacing:1px;";
+const cardEl = document.getElementById("profile-card");
+
+if (cardEl) {
+  cardEl.appendChild(clockBox);
+  setInterval(() => {
+    const now = new Date();
+    clockBox.textContent = now.toTimeString().split(' ')[0]; // Выведет ЧЧ:ММ:СС
+  }, 1000);
+}
