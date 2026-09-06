@@ -579,3 +579,23 @@ body::after {
   transform: scale(1.03);
   filter: grayscale(0) contrast(1.1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
 }
+
+/* Музыкальная строчка внизу дискорд-бокса */
+.music-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: monospace, sans-serif;
+  text-transform: uppercase;
+}
+.music-icon-spin {
+  animation: spin 4s linear infinite;
+  display: inline-block;
+}
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}
+
