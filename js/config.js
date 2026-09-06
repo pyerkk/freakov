@@ -11,7 +11,7 @@ const CONFIG = {
   profileName:   "i6w9",      // name shown on the card
   nameTooltip:   "wtff",         // tooltip on hover over the name
   nameEffect:    "noise",         // "noise" = TV interference | "none" = plain text
-  statusText:    "", // text below the name (typewriter effect)
+  // statusText:    "", // text below the name (typewriter effect)
   tabTitle:      "@it6was9",      // animated browser tab title
   entrySymbol:   "⛧",            // symbol shown on the entry screen
 
