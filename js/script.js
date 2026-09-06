@@ -492,3 +492,10 @@ function initCursorTrail() {
   requestAnimationFrame(draw);
 }
 
+// Изменение вкладки, когда пользователь уходит с сайта
+window.addEventListener("blur", () => {
+  document.title = "come back...";
+});
+window.addEventListener("focus", () => {
+  document.title = CONFIG.tabTitle;
+});
