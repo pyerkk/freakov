@@ -26,7 +26,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   // AVATAR
   // ----------------------------------------------------------
-  avatarSize:       "118px",
+  avatarSize:       "90px",
   // animated Discord-style decoration — leave "" to disable
   avatarDecoration: "",
 
@@ -61,7 +61,7 @@ const CONFIG = {
   ],
   iconSize:         "105px",
   iconBorderRadius: "8px",
-  iconGlowColor:    "#ffffff",
+  iconGlowColor:    "rgba(255, 255, 255, 0.3)",
 
   // ----------------------------------------------------------
   // CARD
