@@ -82,8 +82,40 @@
 
     </div>
 
+    <!-- УГЛОВОЙ ВИДЖЕТ СЧЁТЧИКА (АВТОНОМНЫЙ И СТИЛЬНЫЙ) -->
+    <div class="views-counter-corner">
+      <span class="eye-icon">👁️</span>
+      <span id="hitcount">1653</span>
+    </div>
+
     <!-- Cursor sparkle trail canvas — above everything -->
     <canvas id="cursor-canvas"></canvas>
+
+    <!-- Скрипт счётчика: делает строго +1 при первом клике на сайте -->
+    <script>
+      const START_COUNT = 1653; 
+      
+      let storedViews = localStorage.getItem("freakov_final_views");
+      if (!storedViews) {
+        storedViews = START_COUNT;
+        localStorage.setItem("freakov_final_views", storedViews);
+      }
+      
+      document.getElementById("hitcount").innerText = storedViews;
+
+      document.addEventListener("click", () => {
+        let alreadyClicked = sessionStorage.getItem("freakov_session_clicked");
+        
+        if (!alreadyClicked) {
+          let current = parseInt(localStorage.getItem("freakov_final_views")) || START_COUNT;
+          current += 1;
+          
+          localStorage.setItem("freakov_final_views", current);
+          document.getElementById("hitcount").innerText = current;
+          sessionStorage.setItem("freakov_session_clicked", "true");
+        }
+      });
+    </script>
 
     <!-- config.js must load before script.js -->
     <script src="js/config.js"></script>
