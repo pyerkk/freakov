@@ -68,7 +68,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   cardMaxWidth:        "35rem",
   cardBorderRadius:    "24px",     // Изменено на аккуратные современные углы вместо круглых 85px
-  cardBackground:      "rgba(255, 255, 255, 0.3)", // Меняем на полупрозрачный темный!
+  cardBackground:      "rgba(15, 15, 15, 0.65)", // Меняем на полупрозрачный темный!
   cardBorder:          "none",
   cardRevealDelay:     300,        
   cardTiltIntensity:   2,                        // Обязательно 0!
