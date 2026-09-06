@@ -499,3 +499,18 @@ window.addEventListener("blur", () => {
 window.addEventListener("focus", () => {
   document.title = CONFIG.tabTitle;
 });
+// Эффект ошибки при клике на статус
+const statusEl = document.getElementById("profile-status");
+if (statusEl) {
+  statusEl.style.cursor = "pointer";
+  statusEl.addEventListener("click", () => {
+    const originalText = CONFIG.statusText;
+    statusEl.textContent = "[ACCESS_DENIED_]";
+    statusEl.style.color = "#ff3333"; // Красный текст ошибки
+    
+    setTimeout(() => {
+      statusEl.textContent = originalText;
+      statusEl.style.color = "";
+    }, 1200);
+  });
+}
