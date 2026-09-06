@@ -92,21 +92,25 @@
     <!-- Cursor sparkle trail canvas — above everything -->
     <canvas id="cursor-canvas"></canvas>
 
-    <!-- Скрипт локального подсчета посещений страницы с красивой начальной цифрой -->
+    <!-- Скрипт клик-счётчика: считает заходы + накручивает просмотры при кликах -->
     <script>
-      // Укажи здесь любое стартовое число, которое тебе нравится:
       const START_COUNT = 1653; 
+      let storedViews = localStorage.getItem("freakov_click_views");
       
-      let storedViews = localStorage.getItem("freakov_views_v3");
-      
-      if (storedViews) {
-        storedViews = parseInt(storedViews) + 1;
-      } else {
+      if (!storedViews) {
         storedViews = START_COUNT;
+        localStorage.setItem("freakov_click_views", storedViews);
       }
       
-      localStorage.setItem("freakov_views_v3", storedViews);
       document.getElementById("hitcount").innerText = storedViews;
+
+      // Функция, которая прибавляет просмотр при КАЖДОМ клике по экрану
+      document.addEventListener("click", () => {
+        let current = parseInt(localStorage.getItem("freakov_click_views")) || START_COUNT;
+        current += 1;
+        localStorage.setItem("freakov_click_views", current);
+        document.getElementById("hitcount").innerText = current;
+      });
     </script>
 
     <!-- config.js must load before script.js -->
