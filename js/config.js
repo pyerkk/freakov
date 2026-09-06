@@ -11,7 +11,7 @@ const CONFIG = {
   profileName:   "i6w9",      // name shown on the card
   nameTooltip:   "wtff",         // tooltip on hover over the name
   nameEffect:    "noise",         // "noise" = TV interference | "none" = plain text
-  statusText:    "^_^ ?? ^3^ ?? >-< ?? >3<", // text below the name (typewriter effect)
+  statusText:    "^_^ ?? ^_^ ??", // text below the name (typewriter effect)
   tabTitle:      "@it6was9",      // animated browser tab title
   entrySymbol:   "⛧",            // symbol shown on the entry screen
 
@@ -59,9 +59,9 @@ const CONFIG = {
   socialLinks: [
     { name: "Telegram", url: "https://t.me/kiriokoo",         icon: "assets/icons/instagram.png" },
   ],
-  iconSize:         "80px",
+  iconSize:         "105px",
   iconBorderRadius: "8px",
-  iconGlowColor:    "#ffd1d1",
+  iconGlowColor:    "#ffffff",
 
   // ----------------------------------------------------------
   // CARD
