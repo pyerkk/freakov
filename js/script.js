@@ -441,3 +441,45 @@ function initCursorTrail() {
   window.addEventListener("resize", resize);
   requestAnimationFrame(draw);
 }
+// ============================================================
+// ФИНАЛЬНЫЙ СКРИПТ: СТЕКЛО, ПЕРЕЛИВ РАМКИ И ПЛАВНОЕ ПАРЕНИЕ
+// ============================================================
+(function() {
+  const card = document.getElementById('profile-card');
+  if (!card) return;
+
+  // 1. Принудительно задаем параметры тонкой рамки и матового стекла
+  card.style.border = "2px solid transparent";
+  card.style.backdropFilter = "blur(12px)";
+  card.style.webkitBackdropFilter = "blur(12px)";
+
+  let startTime = Date.now();
+  
+  function renderLoop() {
+    const elapsed = Date.now() - startTime;
+    
+    // АНИМАЦИЯ ПАРЕНИЯ (вычисляем идеально плавную волну времени)
+    const floatWave = Math.sin(elapsed / 6000 * Math.PI * 2);
+    const translateY = floatWave * 7; // ход на 7 пикселей вверх-вниз
+    card.style.marginTop = `${translateY}px`;
+    
+    // АНИМАЦИЯ ГРАДИЕНТА (плавно двигаем цвета бело-серого контура)
+    const gradientPos = (elapsed / 30) % 400; // 30 — скорость перелива цветов
+    
+    // Каждую миллисекунду жестко прописываем стили поверх любых ограничений шаблона
+    card.style.backgroundImage = `
+      linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), 
+      linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff)
+    `;
+    card.style.backgroundOrigin = "padding-box, border-box";
+    card.style.backgroundSize = `100% 100%, 400% 400%`;
+    card.style.backgroundPosition = `0% 0%, ${gradientPos}% 50%`;
+    card.style.boxShadow = "0 0 15px rgba(255, 255, 255, 0.12)";
+    
+    // Запускаем игровой цикл отрисовки (гарантирует 60+ FPS без покадровых лагов)
+    requestAnimationFrame(renderLoop);
+  }
+  
+  // Запускаем бесконечный цикл плавного рендеринга
+  requestAnimationFrame(renderLoop);
+})();
