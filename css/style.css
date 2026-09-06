@@ -698,4 +698,37 @@ body::after {
 #avatar-wrapper:hover::after {
   transform: rotate(90deg); /* Крутится при наведении */
 }
+/* Технологичные уголки для блока Дискорда */
+#discord-presence {
+  position: relative;
+}
+
+#discord-presence::before, #discord-presence::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: rgba(255, 255, 255, 0.3);
+  border-style: solid;
+  pointer-events: none;
+}
+
+/* Верхний левый и нижний правый угол */
+#discord-presence::before {
+  top: 4px; left: 4px;
+  border-width: 1px 0 0 1px;
+}
+#discord-presence::after {
+  bottom: 4px; right: 4px;
+  border-width: 0 1px 1px 0;
+}
+/* Плавное разрежение букв статуса при наведении */
+#profile-status {
+  transition: letter-spacing 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s ease;
+}
+
+#profile-status:hover {
+  letter-spacing: 4px !important;
+  color: #ffffff !important;
+}
 
