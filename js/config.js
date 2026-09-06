@@ -68,17 +68,11 @@ const CONFIG = {
   // ----------------------------------------------------------
   cardMaxWidth:        "35rem",
   cardBorderRadius:    "24px",     // Изменено на аккуратные современные углы вместо круглых 85px
-  
-  /* ИСПРАВЛЕНО: передаем правильный полупрозрачный цвет стекла прямо в скрипт шаблона */
-  cardBackground:      "rgba(10, 10, 10, 0.65)",
-  
+  cardBackground:      "rgba(255, 255, 255, 0.3)", // Меняем на полупрозрачный темный!
   cardBorder:          "none",
-  cardRevealDelay:     300,        // ms between entry click and card appearance
-  
-  /* ИСПРАВЛЕНО: отключаем 3D наклон карточки, чтобы убрать покадровые лаги анимации */
-  cardTiltIntensity:   0,         
-  cardTiltPerspective: "0px",  
-
+  cardRevealDelay:     300,        
+  cardTiltIntensity:   0,                        // Обязательно 0!
+  cardTiltPerspective: "0px",                    // Обязательно 0px!
 
   // ----------------------------------------------------------
   // DISCORD BOX (presence box inside the card)
