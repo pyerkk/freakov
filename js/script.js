@@ -105,17 +105,55 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("discord-status-icon").src =
     statusIconMap[CONFIG.discordPresenceStatus] || statusIconMap.offline;
   
-  // -- Music player widget --
+  // -- Умный музыкальный плеер с таймером на 1:40 --
   if (CONFIG.musicTrackName) {
     const musicBox = document.createElement("div");
     musicBox.className = "music-status";
-    musicBox.innerHTML = `<span class="music-icon-spin">💿</span> ${CONFIG.musicTrackName}`;
     
-    // Вставляем плеер прямо внутрь Дискорд-блока
+    // Создаем внутреннюю структуру: трек, таймер и полосу
+    musicBox.innerHTML = `
+      <div class="music-info-row">
+        <span class="music-text"><span class="music-icon-spin">💿</span> ${CONFIG.musicTrackName}</span>
+        <span id="music-timer">00:00</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div id="music-progress" class="progress-bar-fill"></div>
+      </div>
+    `;
+    
     const discordInfo = document.getElementById("discord-info");
     if (discordInfo) {
       discordInfo.appendChild(musicBox);
     }
+
+    // Слушаем клик по стартовому экрану, чтобы запустить таймер синхронно с музыкой
+    document.getElementById("entry-screen").addEventListener("click", () => {
+      const duration = 100; // 1 минута 40 секунд = 100 секунд
+      let currentTime = 0;
+      
+      const timerEl = document.getElementById("music-timer");
+      const progressEl = document.getElementById("music-progress");
+
+      const interval = setInterval(() => {
+        currentTime++;
+        
+        // Считаем минуты и секунды
+        const mins = Math.floor(currentTime / 60).toString().padStart(2, '0');
+        const secs = (currentTime % 60).toString().padStart(2, '0');
+        
+        // Обновляем текст таймера
+        if (timerEl) timerEl.textContent = `${mins}:${secs}`;
+        
+        // Двигаем полосу прогресса
+        const percent = (currentTime / duration) * 100;
+        if (progressEl) progressEl.style.width = `${percent}%`;
+
+        // Когда песня кончилась — останавливаемся на 01:40
+        if (currentTime >= duration) {
+          clearInterval(interval);
+        }
+      }, 1000); // Обновление каждую секунду
+    });
   }
   // -- Custom cursor --
   if (CONFIG.customCursor) {
