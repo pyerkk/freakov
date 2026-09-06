@@ -526,3 +526,20 @@ if (cardEl) {
     clockBox.textContent = now.toTimeString().split(' ')[0]; // Выведет ЧЧ:ММ:СС
   }, 1000);
 }
+// Динамическая смена статуса при наведении на соцсети
+const tgLink = document.querySelector("#social-links a");
+const discordActivityEl = document.getElementById("discord-activity");
+
+if (tgLink && discordActivityEl) {
+  const originalActivity = discordActivityEl.textContent;
+  
+  tgLink.addEventListener("mouseenter", () => {
+    discordActivityEl.textContent = "// РЕПОРТ: ОТКРЫВАЮ СВЯЗЬ...";
+    discordActivityEl.style.color = "#ffffff";
+  });
+  
+  tgLink.addEventListener("mouseleave", () => {
+    discordActivityEl.textContent = originalActivity;
+    discordActivityEl.style.color = "";
+  });
+}
