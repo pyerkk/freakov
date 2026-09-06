@@ -142,7 +142,6 @@ body {
 /* ============================================================
    PROFILE CARD
    The card shape (background, corners) is always visible.
-   Only its children animate in after the entry click.
    ============================================================ */
 #profile-card {
   position: absolute;
@@ -164,9 +163,22 @@ body {
   border: var(--card-border, none);
   border-radius: var(--card-border-radius, 85px);
 
+  /* Добавлена плавная анимация движения */
+  animation: ultraSmoothFloat 16s ease-in-out infinite;
+
   transform: translate(-50%, -50%) perspective(var(--card-tilt-perspective, 1000px)) rotateX(0deg) rotateY(0deg);
   transition: transform 700ms cubic-bezier(0.03, 0.98, 0.52, 0.99);
   will-change: transform;
+}
+
+/* Траектория медленного покачивания квадрата */
+@keyframes ultraSmoothFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-6px) translateX(3px);
+  }
 }
 
 /* Card reveal — sections animate in one by one after entry click */
@@ -198,6 +210,9 @@ body {
 /* Avatar */
 #avatar-wrapper {
   position: relative;
+Принял! Лови третью часть (строки 201–300).
+Здесь идут стили для аватарки, кастомных шрифтов имени и всплывающих подсказок.
+
   width: var(--avatar-size, 70px);
   height: var(--avatar-size, 70px);
   flex-shrink: 0;
@@ -210,7 +225,6 @@ body {
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 1);
 }
-
 /* Discord-style animated decoration ring — larger than the avatar */
 #avatar-decoration {
   position: absolute;
@@ -220,7 +234,6 @@ body {
   object-fit: contain;
   pointer-events: none;
 }
-
 /* Name row — name span + badges side by side */
 #profile-name {
   display: flex;
@@ -238,7 +251,6 @@ body {
   gap: 6px;
   flex-wrap: wrap;
 }
-
 /* Name wrapper — auto-sized so it doesn't interfere with badges */
 .name-wrapper {
   position: relative;
@@ -248,7 +260,6 @@ body {
   justify-content: flex-start;
   overflow: visible;
 }
-
 /* Name span — SVG interference filter applied directly here */
 #name-text {
   display: inline-block;
@@ -263,7 +274,6 @@ body {
   text-shadow: var(--username-glow, none);
   filter: url(#name-filter);
 }
-
 /* Name tooltip — appears above on hover */
 .name-tooltip {
   position: absolute;
@@ -291,7 +301,6 @@ body {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
-
 /* Badges */
 #badges {
   display: flex;
@@ -398,7 +407,6 @@ body {
   border: var(--discord-avatar-border, 2px solid rgba(249, 184, 184, 0.2));
   display: block;
 }
-
 /* Status icon (online / idle / dnd / offline) — bottom-right corner */
 #discord-status-icon {
   position: absolute;
@@ -475,3 +483,5 @@ body {
 #avatar-decoration {
     display: none !important;
 }
+
+
