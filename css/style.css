@@ -785,25 +785,6 @@ body::after {
   box-shadow: 0 0 4px #ffffff;
   border-radius: 2px;
 }
-/* Компактный эквалайзер рядом с таймером */
-.music-info-row::after {
-  content: ' ';
-  display: inline-flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 10px;
-  width: 14px;
-}
-/* Создаем 3 прыгающих столбика */
-.music-info-row::after {
-  background: linear-gradient(90deg, #fff 2px, transparent 2px) repeat-x;
-  background-size: 4px 100%;
-  animation: eqBars 0.6s steps(4) infinite alternate;
-}
-@keyframes eqBars {
-  0% { clip-path: inset(60% 0 0 0); }
-  100% { clip-path: inset(0 0 0 0); }
-}
 
 /* Вертикальные технические маркеры по краям экрана */
 body::before {
