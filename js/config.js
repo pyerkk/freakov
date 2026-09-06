@@ -68,11 +68,16 @@ const CONFIG = {
   // ----------------------------------------------------------
   cardMaxWidth:        "35rem",
   cardBorderRadius:    "24px",     // Изменено на аккуратные современные углы вместо круглых 85px
-  cardBackground:      "rgba(255, 255, 255, 0.05)",
+  
+  /* ИСПРАВЛЕНО: передаем правильный полупрозрачный цвет стекла прямо в скрипт шаблона */
+  cardBackground:      "rgba(10, 10, 10, 0.65)",
+  
   cardBorder:          "none",
   cardRevealDelay:     300,        // ms between entry click and card appearance
-  cardTiltIntensity:   2,         // Уменьшаем силу наклона до минимума (было 5)
-  cardTiltPerspective: "3000px",  // Делаем 3D-искажение очень мягким и далеким (было 1500px)
+  
+  /* ИСПРАВЛЕНО: отключаем 3D наклон карточки, чтобы убрать покадровые лаги анимации */
+  cardTiltIntensity:   0,         
+  cardTiltPerspective: "0px",  
 
 
   // ----------------------------------------------------------
