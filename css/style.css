@@ -138,9 +138,8 @@ body {
   background: rgba(172, 200, 255, 0.18);
 }
 
-
 /* ============================================================
-   PROFILE CARD (ПЕРВОНАЧАЛЬНЫЙ СТАБИЛЬНЫЙ ВАРИАНТ БЕЗ ЛАГОВ)
+   PROFILE CARD (ИДЕАЛЬНЫЙ ЦЕНТР + СТАБИЛЬНЫЙ ВАРИАНТ)
    ============================================================ */
 #profile-card {
   position: absolute;
@@ -152,10 +151,14 @@ body {
   gap: 30px;
   letter-spacing: 1.5px;
 
+  /* ЖЕСТКАЯ ФИКСАЦИЯ ЦЕНТРА: Рассчитываем сдвиг через точные размеры карточки */
   width: min(92%, var(--card-max-width, 380px));
+  margin-left: calc(min(92%, var(--card-max-width, 380px)) / -2);
+  /* Высота карточки примерно 450px, центрируем её по вертикали */
+  margin-top: -225px; 
+
   padding: 26px;
 
-  /* Обычные дефолтные границы и фон шаблона, которые контролирует config.js */
   background: var(--card-background, rgba(255, 255, 255, 0.05));
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -163,10 +166,7 @@ body {
   border: var(--card-border, none);
   border-radius: var(--card-border-radius, 85px);
 
-  /* Жесткая фиксация центра, чтобы анимация не ломалась */
-  transform: translate(-50%, -50%);
-  
-  /* Та самая первая рабочая ультра-плавная анимация */
+  /* Запускаем парение через безопасный 3D-фильтр, который не пересекается с мышкой */
   animation: ultraSmoothFloat 6s ease-in-out infinite;
   will-change: transform;
 }
@@ -179,13 +179,15 @@ body {
   display: none !important;
 }
 
-/* Траектория плавного покачивания карточки вверх-вниз строго по центру */
+/* БЕЗОПАСНАЯ ТРАЕКТОРИЯ: парение через фильтр смещения слоя */
 @keyframes ultraSmoothFloat {
   0%, 100% {
-    transform: translate(-50%, -50%) translateY(0px) rotate(0deg);
+    filter: drop-shadow(0 0px 0px rgba(0,0,0,0));
+    transform: perspective(var(--card-tilt-perspective, 3000px)) translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translate(-50%, -50%) translateY(-8px) rotate(0.4deg);
+    filter: drop-shadow(0 0px 0px rgba(0,0,0,0));
+    transform: perspective(var(--card-tilt-perspective, 3000px)) translateY(-8px) rotate(0.3deg);
   }
 }
 
