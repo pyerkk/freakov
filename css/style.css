@@ -889,3 +889,57 @@ body::after {
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 
               0 0 40px rgba(255, 255, 255, 0.02) !important;
 }
+/* Техническая линейка над карточкой */
+#profile-card::before {
+  content: "I0I...I0I...I0I...I0I...I0I...I0I...I0I   [SEC_CON_9]";
+  position: absolute;
+  top: -24px;
+  left: 10px;
+  font-family: monospace, sans-serif;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.15);
+  letter-spacing: 2px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+/* ============================================================
+   АНИМИРОВАННЫЙ ДВОИЧНЫЙ КОД СБОКУ КАРТОЧКИ
+   ============================================================ */
+
+/* Контейнер для бегущих цифр справа */
+#profile-card::after {
+  content: "01010101010101010101010101010101";
+  position: absolute;
+  top: 50%;
+  right: -35px; /* Дистанция от правого края карточки */
+  
+  /* Разворачиваем вертикально и центрируем */
+  transform: translateY(-50%) rotate(90deg); 
+  
+  font-family: monospace, sans-serif;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 1;
+
+  /* Эффект бесконечного движения и серо-белого перелива */
+  background: linear-gradient(90deg, #444444, #ffffff, #888888, #ffffff, #444444);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: binaryFlow 4s linear infinite;
+}
+
+/* Анимация смещения градиента (создает эффект бегущих огоньков по цифрам) */
+@keyframes binaryFlow {
+  0% {
+    background-position: 0% 50%;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    background-position: 100% 50%;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+  }
+}
