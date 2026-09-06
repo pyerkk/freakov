@@ -104,7 +104,19 @@ document.addEventListener("DOMContentLoaded", () => {
   };
   document.getElementById("discord-status-icon").src =
     statusIconMap[CONFIG.discordPresenceStatus] || statusIconMap.offline;
-
+  
+  // -- Music player widget --
+  if (CONFIG.musicTrackName) {
+    const musicBox = document.createElement("div");
+    musicBox.className = "music-status";
+    musicBox.innerHTML = `<span class="music-icon-spin">💿</span> ${CONFIG.musicTrackName}`;
+    
+    // Вставляем плеер прямо внутрь Дискорд-блока
+    const discordInfo = document.getElementById("discord-info");
+    if (discordInfo) {
+      discordInfo.appendChild(musicBox);
+    }
+  }
   // -- Custom cursor --
   if (CONFIG.customCursor) {
     const style = document.createElement("style");
