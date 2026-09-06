@@ -144,7 +144,7 @@ body {
    The card shape (background, corners) is always visible.
    ============================================================ */
 /* ============================================================
-   PROFILE CARD (БЕЗЛАГОВОЕ МАТОВОЕ СТЕКЛО FREAKOV)
+   PROFILE CARD (БАЗОВЫЙ КАРКАС — ВСЯ МАГИЯ ПЕРЕНЕСЕНА В JS)
    ============================================================ */
 #profile-card {
   position: absolute;
@@ -158,75 +158,21 @@ body {
 
   width: min(92%, var(--card-max-width, 380px));
   padding: 26px;
-
-  /* Убираем родной фон и рамку, которые ломает скрипт */
-  background: transparent !important;
-  border: none !important;
-  
   border-radius: var(--card-border-radius, 24px);
 
-  /* Идеальный центр и шёлковое парение через margin */
-  transform: translate(-50%, -50%) !important;
-  animation: ultraSmoothFloat 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite !important;
-  will-change: margin-top;
+  /* Жестко фиксируем центр для стабильной работы скрипта мыши */
+  transform: translate(-50%, -50%) perspective(var(--card-tilt-perspective, 1000px)) rotateX(0deg) rotateY(0deg);
+  transition: transform 700ms cubic-bezier(0.03, 0.98, 0.52, 0.99);
+  will-change: transform, margin-top;
   
   z-index: 1;
 }
 
-/* СОЗДАЕМ НЕЗАВИСИМОЕ СТЕКЛО И ПЕРЕЛИВАЮЩУЮСЯ РАМКУ */
+/* Полностью отключаем старые слои, чтобы они не создавали графических лагов */
+#profile-card::before,
 #profile-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  
-  /* Тонкая рамка 2px */
-  border: 2px solid transparent;
-  
-  /* Магия: красим стекло внутри и градиент на рамке */
-  background: 
-    linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)) padding-box,
-    linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff) border-box !important;
-  
-  background-size: 100% 100%, 400% 400% !important;
-  
-  /* Включаем глубокое размытие заднего фона */
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  
-  /* Запускаем бесконечный перелив рамки */
-  animation: borderGlow 12s linear infinite !important;
-  
-  /* Прячем слой за контент карточки */
-  z-index: -1;
-  pointer-events: none;
-  
-  /* Мягкое свечение */
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.12);
-}
-
-/* Полностью отключаем старый слой ::before, чтобы он ничего не ломал */
-#profile-card::before {
   display: none !important;
 }
-
-/* Траектория плавного покачивания карточки вверх-вниз */
-@keyframes ultraSmoothFloat {
-  0%, 100% {
-    margin-top: 0px;
-  }
-  50% {
-    margin-top: -8px; 
-  }
-}
-
-/* Траектория движения цветов по рамке */
-@keyframes borderGlow {
-  0%   { background-position: 0% 50%, 0% 50%;   }
-  50%  { background-position: 0% 50%, 100% 50%; }
-  100% { background-position: 0% 50%, 0% 50%;   }
-}
-
 
 
 /* Card reveal — sections animate in one by one after entry click */
