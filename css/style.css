@@ -143,6 +143,9 @@ body {
    PROFILE CARD
    The card shape (background, corners) is always visible.
    ============================================================ */
+/* ============================================================
+   PROFILE CARD (ИДЕАЛЬНОЕ СТЕКЛО + ПЛАВНЫЙ СВЕТЯЩИЙСЯ КОНТУР)
+   ============================================================ */
 #profile-card {
   position: absolute;
   top: 50%;
@@ -156,54 +159,65 @@ body {
   width: min(92%, var(--card-max-width, 380px));
   padding: 26px;
 
-  /* Прозрачное заблюренное стекло */
-  background: rgba(255, 255, 255, 0.03); 
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* ВОЗВРАЩАЕМ ПРОЗРАЧНОЕ ИДЕАЛЬНОЕ СТЕКЛО */
+  background: rgba(10, 10, 10, 0.7) !important; 
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 
   border-radius: var(--card-border-radius, 25px);
 
-  /* ЖЕСТКИЙ ЦЕНТР: скрипт мыши больше не дергается и не спорит с анимацией */
+  /* Жесткий центр: 3D-наклон мыши теперь работает идеально без конфликтов */
   transform: translate(-50%, -50%) perspective(var(--card-tilt-perspective, 1000px)) rotateX(0deg) rotateY(0deg);
   transition: transform 700ms cubic-bezier(0.03, 0.98, 0.52, 0.99);
-  will-change: transform;
+  will-change: transform, margin-top;
 
-  border: none;
+  /* Включаем парение через мягкий margin, разгружая скрипт transform */
+  animation: ultraSmoothFloat 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite !important;
+
+  border: none !important;
   z-index: 1;
 }
 
-/* Бело-серая рамка по краям стекла */
+/* Бело-серая рамка строго по краям заблюренного стекла */
 #profile-card::before {
   content: "";
   position: absolute;
   inset: 0; 
   border-radius: inherit;
-  padding: 2px; 
-  background: linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff);
-  background-size: 400% 400%;
+  padding: 2px; /* Толщина рамки ровно 2px */
+  
+  /* Тот самый бело-серый градиент */
+  background: linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff) !important;
+  background-size: 400% 400% !important;
+  
+  /* Магия вырезания: градиент остается только на ободке, середина прозрачная */
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
+  
   pointer-events: none;
   z-index: -1;
-  animation: borderGlow 10s linear infinite;
+
+  /* Включаем независимый бесконечный перелив рамки */
+  animation: borderGlow 10s linear infinite !important;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
 }
 
-/* Переносим парение на внутренние элементы, разгружая видеокарту на 100% */
-#profile-card > * {
-  animation: ultraSmoothFloat 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
-  will-change: transform;
-}
-
-/* УЛЬТРАПЛАВНОЕ ПАРЕНИЕ: через чистый 3D-трансформ, без перерисовок слоев */
+/* ОПТИМИЗИРОВАННАЯ АНИМАЦИЯ: Карточка плавает мягко и без покадровых лагов */
 @keyframes ultraSmoothFloat {
   0%, 100% {
-    transform: translateY(0.01px);
+    margin-top: 0px;
   }
   50% {
-    transform: translateY(-7px); /* Элементы внутри плавно плывут вверх-вниз */
+    margin-top: -8px; /* Ровное скольжение строго по центру экрана */
   }
+}
+
+/* Анимация плавного перелива цветов градиента */
+@keyframes borderGlow {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
 }
 
 
