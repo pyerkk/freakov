@@ -142,9 +142,6 @@ body {
 /* ============================================================
    PROFILE CARD (ИЗОЛИРОВАННЫЙ КАРКАС ДЛЯ ЧИСТОЙ РАБОТЫ)
    ============================================================ */
-/* ============================================================
-   PROFILE CARD (БЕЗОПАСНЫЙ ВАРИАНТ: ВОЗВРАТ КАРТОЧКИ + ВИЗУАЛ)
-   ============================================================ */
 #profile-card {
   position: absolute;
   top: 50%;
@@ -158,70 +155,44 @@ body {
   width: min(92%, var(--card-max-width, 380px));
   padding: 26px;
 
-  /* Накладываем матовое заблюренное стекло через изображение-маску, скрипт шаблона её не видит */
-  background-image: linear-gradient(rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.75)) !important;
+  /* 1. Возвращаем прозрачное заблюренное матовое стекло */
+  background: rgba(10, 10, 10, 0.65) !important;
   backdrop-filter: blur(12px) !important;
   -webkit-backdrop-filter: blur(12px) !important;
 
-  border-radius: var(--card-border-radius, 24px);
+  /* Современные скругленные углы */
+  border-radius: var(--card-border-radius, 24px) !important;
 
-  /* Ровное и плавное парение всей карточки через margin */
-  transform: translate(-50%, -50%) perspective(var(--card-tilt-perspective, 3000px)) rotateX(0deg) rotateY(0deg) !important;
-  transition: transform 700ms cubic-bezier(0.03, 0.98, 0.52, 0.99);
-  animation: safeFloatAnimation 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite !important;
-  will-change: margin-top;
+  /* 2. ФИКС РАМКИ: Двойной слой тени создает идеальный бело-серый ободок в 2px */
+  border: none !important;
+  box-shadow: 
+    0 0 0 2px rgba(255, 255, 255, 0.4), /* Светло-белый внешний контур */
+    0 0 15px rgba(255, 255, 255, 0.15) !important; /* Мягкое неоновое свечение */
 
-  /* Тонкая рамка 2px */
-  border: 2px solid transparent !important;
+  /* Центрирование и сверхлегкое парение */
+  transform: translate(-50%, -50%) !important;
+  animation: lightFloat 5s ease-in-out infinite !important;
+  will-change: transform;
+
   z-index: 1;
 }
 
-/* Создаем переливающуюся рамку через независимый псевдоэлемент, который скрипт не может стереть */
+/* Полностью выключаем все старые слои, чтобы они не мешали коду */
+#profile-card::before, 
 #profile-card::after {
-  content: "";
-  position: absolute;
-  inset: -2px; /* Выносим рамку ровно на 2px наружу */
-  border-radius: inherit;
-  padding: 2px;
-  
-  /* Тот самый бело-серый градиент */
-  background: linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff) !important;
-  background-size: 400% 400% !important;
-  
-  /* Вырезаем внутреннюю часть, чтобы середина осталась прозрачным стеклом */
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  
-  pointer-events: none;
-  z-index: -1;
-
-  /* Запуск бесконечного медленного перелива рамки */
-  animation: safeBorderGlow 12s linear infinite !important;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.12);
-}
-
-/* На всякий случай отключаем старый слой ::before */
-#profile-card::before {
   display: none !important;
 }
 
-/* Безопасное покачивание всей карточки вверх-вниз */
-@keyframes safeFloatAnimation {
+/* Сверхлегкая плавная анимация покачивания без лагов */
+@keyframes lightFloat {
   0%, 100% {
-    margin-top: 0px;
+    transform: translate(-50%, -50%) translateY(0px);
   }
   50% {
-    margin-top: -8px;
+    transform: translate(-50%, -50%) translateY(-6px);
   }
 }
 
-/* Плавный бег градиента по контуру */
-@keyframes safeBorderGlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
 
 
 /* Card reveal — sections animate in one by one after entry click */
