@@ -110,16 +110,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const musicBox = document.createElement("div");
     musicBox.className = "music-status";
     
-    // Создаем внутреннюю структуру: трек, таймер и полосу
-    musicBox.innerHTML = `
+      musicBox.innerHTML = `
       <div class="music-info-row">
         <span class="music-text"><span class="music-icon-spin">💿</span> ${CONFIG.musicTrackName}</span>
         <span id="music-timer">00:00</span>
+        <div class="music-eq-container">
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+        </div>
       </div>
       <div class="progress-bar-bg">
         <div id="music-progress" class="progress-bar-fill"></div>
       </div>
     `;
+
     
     const discordInfo = document.getElementById("discord-info");
     if (discordInfo) {
