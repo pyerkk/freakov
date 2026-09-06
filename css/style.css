@@ -149,6 +149,9 @@ body {
 /* ============================================================
    PROFILE CARD (ИДЕАЛЬНОЕ ЦЕНТРИРОВАНИЕ И ПЛАВНОСТЬ)
    ============================================================ */
+/* ============================================================
+   PROFILE CARD (ПЛАВНЫЙ ЦЕНТР + ЯРКАЯ ПЕРЕЛИВАЮЩАЯСЯ РАМКА)
+   ============================================================ */
 #profile-card {
   position: absolute;
   top: 50%;
@@ -162,28 +165,55 @@ body {
   width: min(92%, var(--card-max-width, 380px));
   padding: 26px;
 
-  background: var(--card-background, rgba(200, 27, 27, 0.03));
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  /* Делаем полупрозрачный темный фон, чтобы сквозь него не просвечивал градиент */
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 
-  border: var(--card-border, none);
-  border-radius: var(--card-border-radius, 85px);
+  /* Закругление краев */
+  border-radius: var(--card-border-radius, 25px);
 
-  /* Жестко фиксируем центр через transform, а плавать заставим саму карточку внутри */
+  /* Наша старая плавная анимация движения */
   transform: translate(-50%, -50%);
-  
-  /* Запускаем плавное движение */
   animation: ultraSmoothFloat 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
   will-change: transform;
+
+  /* Важно для создания кастомной рамки */
+  border: none;
 }
 
-/* Движение строго относительно центральной точки (-50%, -50%) */
+/* Создаем слой переливающейся рамки */
+#profile-card::before {
+  content: "";
+  position: absolute;
+  /* Сдвигаем слой на 2px наружу, это и будет толщина нашей рамки */
+  inset: -2px; 
+  z-index: -1;
+  
+  /* Бело-серый градиент */
+  background: linear-gradient(90deg, #ffffff, #8e8e93, #3a3a3c, #8e8e93, #ffffff);
+  background-size: 400% 400%;
+  border-radius: inherit;
+  
+  /* Запускаем ультра-медленный перелив (12 секунд) и добавляем яркое свечение */
+  animation: borderGlow 12s linear infinite;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+}
+
+/* Анимация перелива градиента по кругу */
+@keyframes borderGlow {
+  0%   { background-position: 0% 50%;   }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%;   }
+}
+
+/* Анимация движения самой карточки (осталась прежней) */
 @keyframes ultraSmoothFloat {
   0%, 100% {
     transform: translate(-50%, -50%) translateY(0px) rotate(0deg);
   }
   50% {
-    transform: translate(-50%, -50%) translateY(-8px) rotate(0.4deg); /* Движение только вверх-вниз без ухода вбок */
+    transform: translate(-50%, -50%) translateY(-8px) rotate(0.4deg);
   }
 }
 
