@@ -521,5 +521,53 @@ body {
 #avatar-decoration {
     display: none !important;
 }
+/* ============================================================
+   СТИЛЬНЫЙ УГЛОВОЙ ВИДЖЕТ СЧЁТЧИКА (МАТОВОЕ СТЕКЛО)
+   ============================================================ */
+.views-counter-corner {
+  position: fixed;
+  bottom: 20px;   /* Отступ 20px от нижнего края экрана */
+  right: 20px;    /* Отступ 20px от правого края экрана */
+  z-index: 9;     /* Поверх фона, но под экраном-заставкой */
+
+  display: flex;
+  align-items: center;
+  gap: 8px;       /* Расстояние между глазом и цифрой */
+  padding: 10px 14px;
+
+  /* Эффект матового стекла, как у основного квадрата */
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* Идеально аккуратное сглаживание углов */
+  border-radius: 12px;
+  
+  /* Очень тонкая бело-серая граница, чтобы подходил под стиль */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  
+  /* Текст и цвет */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  
+  /* Мягкое появление и тень */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  opacity: 0.5;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* При наведении мыши виджет становится ярче и чуть приподнимается */
+.views-counter-corner:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Стиль для иконки глаза */
+.eye-icon {
+  font-size: 15px;
+  opacity: 0.8;
+}
 
 
