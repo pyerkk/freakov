@@ -524,51 +524,48 @@ body {
 /* ============================================================
    СТИЛЬНЫЙ УГЛОВОЙ ВИДЖЕТ СЧЁТЧИКА (МАТОВОЕ СТЕКЛО)
    ============================================================ */
-/* ============================================================
-   СТИЛЬНЫЙ УГЛОВОЙ ВИДЖЕТ СЧЁТЧИКА (МАТОВОЕ СТЕКЛО FREAKOV)
-   ============================================================ */
 .views-counter-corner {
   position: fixed;
   bottom: 20px;   /* Отступ от нижнего края экрана */
   right: 20px;    /* Отступ от правого края экрана */
-  z-index: 9;
+  z-index: 9;     /* Находится над фоном, но под экраном входа */
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;       /* Расстояние между глазом и цифрой */
-  padding: 8px 12px;
+  gap: 6px;       /* Расстояние между глазом и цифрой */
+  padding: 8px 14px;
 
-  /* Эффект матового стекла, как у основы */
+  /* Эффект матового стекла, в точности как у основного квадрата */
   background: rgba(10, 10, 10, 0.75);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   
-  /* Аккуратные скругленные углы */
+  /* Идеально аккуратное сглаживание углов */
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   
+  /* Слегка прозрачный в обычном состоянии */
   opacity: 0.6;
   transition: opacity 0.3s ease, transform 0.3s ease;
 
-  /* Убираем старую статичную рамку, так как делаем анимированную */
+  /* Убираем старую границу, так как делаем анимированную через маску */
   border: none; 
 }
 
-/* Создаем ТОЧНО ТАКУЮ ЖЕ анимированную рамку, как у большой карточки */
+/* Создаем ТОНКУЮ анимированную бело-серую рамку вокруг виджета */
 .views-counter-corner::before {
   content: "";
   position: absolute;
-  /* Толщина рамки — 1.5px для маленького формата */
-  inset: -1.5px; 
+  inset: -1.5px; /* Толщина рамки 1.5px */
   border-radius: inherit;
   padding: 1.5px; 
   
-  /* Тот самый бело-серый градиент */
+  /* Бело-серый градиент */
   background: linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff);
   background-size: 400% 400%;
   
-  /* Вырезаем внутреннюю часть, оставляя строго контур */
+  /* Магия: вырезаем центр градиента, оставляя только ободок */
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
@@ -576,30 +573,31 @@ body {
   pointer-events: none;
   z-index: -1;
 
-  /* Запускаем точно такую же анимацию перелива, как на основе */
+  /* Запуск анимации перелива (использует ту же borderGlow, что и основа) */
   animation: borderGlow 10s linear infinite;
-  
-  /* Легкое аккуратное свечение */
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
 }
 
+/* При наведении мышки плашка становится ярче и чуть приподнимается */
 .views-counter-corner:hover {
   opacity: 0.95;
   transform: translateY(-2px);
 }
 
+/* Стиль для эмодзи глаза */
 .eye-icon {
-  font-size: 14px;
+  font-size: 13px;
   opacity: 0.8;
   color: #ffffff;
-  display: inline-block;
-  margin-right: 2px;
 }
 
-.views-counter-corner img {
-  height: 16px; 
-  display: block;
-  filter: grayscale(1) brightness(1.5); 
-  pointer-events: none;
+/* Стиль для текста цифры (ровный, аккуратный и белый) */
+#hitcount {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: sans-serif; 
+  line-height: 1;
 }
+
 
