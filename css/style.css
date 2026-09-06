@@ -805,3 +805,43 @@ body::after {
   100% { clip-path: inset(0 0 0 0); }
 }
 
+/* Вертикальные технические маркеры по краям экрана */
+body::before {
+  content: "SYS.STATUS: ACTIVE // BIND.PORT: 443";
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  font-family: monospace, sans-serif;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.15);
+  letter-spacing: 3px;
+  pointer-events: none;
+}
+
+body::after {
+  content: "DATA_STREAM // REF: @IT6WAS9";
+  position: fixed;
+  right: -40px; /* Сдвиг с учетом поворота */
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: right center;
+  font-family: monospace, sans-serif;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.15);
+  letter-spacing: 3px;
+  pointer-events: none;
+}
+/* Скрывающийся музыкальный блок внутри Дискорда */
+.music-status {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+}
+
+#discord-presence:hover .music-status {
+  max-height: 40px; /* Высота, до которой раскрывается плеер */
+  opacity: 1;
+}
