@@ -833,15 +833,69 @@ body::after {
   letter-spacing: 3px;
   pointer-events: none;
 }
-/* Скрывающийся музыкальный блок внутри Дискорда */
+/* Исправленный контейнер плеера — теперь он всегда виден */
 .music-status {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+  font-family: monospace, sans-serif;
+  color: rgba(255, 255, 255, 0.45); /* Мягкий, не бьющий в глаза цвет текста */
+  font-size: 11px;
 }
 
-#discord-presence:hover .music-status {
-  max-height: 40px; /* Высота, до которой раскрывается плеер */
-  opacity: 1;
+/* Строка с треком, таймером и эквалайзером */
+.music-info-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
 }
+
+/* Ограничиваем название трека, чтобы таймер не уезжал */
+.music-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-grow: 1; /* Занимает всё свободное место слева */
+}
+
+/* Таймер с небольшим отступом справа перед палочками */
+#music-timer {
+  margin-left: auto;
+  padding-right: 10px; /* ОТСТУП: теперь палочки не будут липнуть к цифрам */
+  font-variant-numeric: tabular-nums; /* Фиксированная ширина цифр, чтобы текст не прыгал */
+}
+
+/* ============================================================
+   КАСТОМНЫЙ ЭКВАЛАЙЗЕР (4 РАЗНЫЕ ПАЛОЧКИ С ХАОТИЧНЫМ ДВИЖЕНИЕМ)
+   ============================================================ */
+.music-eq-container {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 10px;
+  width: 16px;
+}
+
+.eq-bar {
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25); /* СДЕЛАНО БЛЕКЛЫМ: теперь они не выделяются */
+  transform-origin: bottom;
+  animation: eqBounce 0.5s ease-in-out infinite alternate;
+}
+
+/* Разная скорость и задержка анимации для каждой палочки, чтобы они двигались ХАОТИЧНО */
+.eq-bar:nth-child(1) { animation-duration: 0.35s; animation-delay: -0.1s; }
+.eq-bar:nth-child(2) { animation-duration: 0.45s; animation-delay: -0.3s; }
+.eq-bar:nth-child(3) { animation-duration: 0.25s; animation-delay: -0.5s; }
+.eq-bar:nth-child(4) { animation-duration: 0.40s; animation-delay: -0.2s; }
+
+@keyframes eqBounce {
+  0%   { transform: scaleY(0.2); }
+  100% { transform: scaleY(1.0); }
+}
+
