@@ -611,4 +611,15 @@ body::after {
   80% { transform: translate(1px, -1px) }
   100% { transform: translate(0) }
 }
+/* Маленький технический водяной знак внизу карточки */
+#profile-card::after {
+  content: "AUDIO: 320KBPS / FLAC CRC [i6w9_PROJECT]";
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  font-family: monospace, sans-serif;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 1px;
+}
 
