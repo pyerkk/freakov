@@ -441,9 +441,7 @@ function initCursorTrail() {
   window.addEventListener("resize", resize);
   requestAnimationFrame(draw);
 }
-// ============================================================
-// НЕЗАВИСИМЫЙ ИГРОВОЙ ДВИЖОК ДЛЯ ИДЕАЛЬНОГО СТЕКЛА И ПАРЕНИЯ
-// ============================================================
+
 (function() {
   const card = document.getElementById('profile-card');
   if (!card) return;
@@ -458,10 +456,16 @@ function initCursorTrail() {
   function renderLoop() {
     const elapsed = Date.now() - startTime;
     
+    // ЖЕСТКИЙ ФИКС: Принудительно обнуляем родной фон карточки, чтобы открыть стекло под ней
+    card.style.setProperty('background', 'transparent', 'important');
+    card.style.setProperty('background-color', 'transparent', 'important');
+    card.style.setProperty('border', 'none', 'important');
+    card.style.setProperty('box-shadow', 'none', 'important');
+    
     // Синхронизируем высоту и размеры, чтобы стекло идеально сидело по форме карточки
     glassBg.style.height = `${card.offsetHeight}px`;
     
-    // Вычисляем абсолютно плавную математическую волну парения (6 секунд на цикл)
+    // Вычисляем плавную математическую волну парения (6 секунд на цикл)
     const floatWave = Math.sin(elapsed / 6000 * Math.PI * 2);
     const translateY = floatWave * 8; // Смещение вверх-вниз на 8 пикселей
     
@@ -473,10 +477,11 @@ function initCursorTrail() {
     const gradientPos = (elapsed / 25) % 400;
     glassBg.style.backgroundPosition = `0% 0%, ${gradientPos}% 50%`;
     
-    // Запускаем нативный игровой цикл рендеринга браузера (60-144+ FPS, без просадок)
+    // Запускаем нативный игровой цикл рендеринга браузера
     requestAnimationFrame(renderLoop);
   }
   
   // Запускаем бесконечную плавную отрисовку
   requestAnimationFrame(renderLoop);
 })();
+
