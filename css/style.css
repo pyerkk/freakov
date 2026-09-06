@@ -143,15 +143,6 @@ body {
    PROFILE CARD
    The card shape (background, corners) is always visible.
    ============================================================ */
-/* ============================================================
-   PROFILE CARD (ОБНОВЛЕННАЯ СВЕРХПЛАВНАЯ АНИМАЦИЯ)
-   ============================================================ */
-/* ============================================================
-   PROFILE CARD (ИДЕАЛЬНОЕ ЦЕНТРИРОВАНИЕ И ПЛАВНОСТЬ)
-   ============================================================ */
-/* ============================================================
-   PROFILE CARD (ПЛАВНЫЙ ЦЕНТР + ЯРКАЯ ПЕРЕЛИВАЮЩАЯСЯ РАМКА)
-   ============================================================ */
 #profile-card {
   position: absolute;
   top: 50%;
@@ -165,49 +156,61 @@ body {
   width: min(92%, var(--card-max-width, 380px));
   padding: 26px;
 
-  /* Делаем полупрозрачный темный фон, чтобы сквозь него не просвечивал градиент */
-  background: rgba(10, 10, 10, 0.75);
+  /* Делаем внутренность карточки прозрачной, но со стильным размытием заднего фона */
+  background: rgba(255, 255, 255, 0.02); 
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 
   /* Закругление краев */
   border-radius: var(--card-border-radius, 25px);
 
-  /* Наша старая плавная анимация движения */
+  /* Плавное движение всей карточки */
   transform: translate(-50%, -50%);
   animation: ultraSmoothFloat 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
   will-change: transform;
 
-  /* Важно для создания кастомной рамки */
+  /* Убираем стандартную рамку */
   border: none;
+  z-index: 1;
 }
 
-/* Создаем слой переливающейся рамки */
+/* Создаем абсолютно прозрачную анимированную рамку вокруг стекла */
 #profile-card::before {
   content: "";
   position: absolute;
-  /* Сдвигаем слой на 2px наружу, это и будет толщина нашей рамки */
-  inset: -2px; 
-  z-index: -1;
-  
-  /* Бело-серый градиент */
-  background: linear-gradient(90deg, #ffffff, #8e8e93, #3a3a3c, #8e8e93, #ffffff);
-  background-size: 400% 400%;
+  inset: 0; 
   border-radius: inherit;
   
-  /* Запускаем ультра-медленный перелив (12 секунд) и добавляем яркое свечение */
-  animation: borderGlow 12s linear infinite;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+  /* Делаем толщину рамки в 2px с помощью padding */
+  padding: 2px; 
+  
+  /* Бело-серый градиент, который переливается */
+  background: linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff);
+  background-size: 400% 400%;
+  
+  /* ГЛАВНАЯ МАГИЯ: вырезаем середину градиента, делая внутренность карточки прозрачной */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  
+  pointer-events: none;
+  z-index: -1;
+
+  /* Медленный перелив градиента */
+  animation: borderGlow 10s linear infinite;
+  
+  /* Мягкое свечение только от краев наружу */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
 }
 
-/* Анимация перелива градиента по кругу */
+/* Анимация движения градиента внутри тонкой рамки */
 @keyframes borderGlow {
   0%   { background-position: 0% 50%;   }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%;   }
 }
 
-/* Анимация движения самой карточки (осталась прежней) */
+/* Анимация парения карточки в воздухе */
 @keyframes ultraSmoothFloat {
   0%, 100% {
     transform: translate(-50%, -50%) translateY(0px) rotate(0deg);
@@ -216,6 +219,7 @@ body {
     transform: translate(-50%, -50%) translateY(-8px) rotate(0.4deg);
   }
 }
+
 
 
 /* Card reveal — sections animate in one by one after entry click */
