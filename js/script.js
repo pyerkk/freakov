@@ -442,46 +442,64 @@ function initCursorTrail() {
   requestAnimationFrame(draw);
 }
 
+// ============================================================
+// УЛЬТИМАТИВНЫЙ ИГРОВОЙ ДВИЖОК: СТЕКЛО, ПЕРЕЛИВ И ФИКС ШАБЛОНА
+// ============================================================
 (function() {
   const card = document.getElementById('profile-card');
   if (!card) return;
 
   // Создаем отдельный независимый элемент для матового стекла и градиентной рамки
-  const glassBg = document.createElement('div');
-  glassBg.className = 'freakov-glass-bg';
-  card.parentNode.insertBefore(glassBg, card);
+  // Если он уже был создан ранее, используем его, чтобы не плодить копии
+  let glassBg = document.querySelector('.freakov-glass-bg');
+  if (!glassBg) {
+    glassBg = document.createElement('div');
+    glassBg.className = 'freakov-glass-bg';
+    card.parentNode.insertBefore(glassBg, card);
+  }
 
   let startTime = Date.now();
   
   function renderLoop() {
     const elapsed = Date.now() - startTime;
     
-    // ЖЕСТКИЙ ФИКС: Принудительно обнуляем родной фон карточки, чтобы открыть стекло под ней
-    card.style.setProperty('background', 'transparent', 'important');
-    card.style.setProperty('background-color', 'transparent', 'important');
-    card.style.setProperty('border', 'none', 'important');
-    card.style.setProperty('box-shadow', 'none', 'important');
+    // 🔥 РАДИКАЛЬНЫЙ МЕТОД: Полностью выжигаем все стили, которые навязывает шаблон!
+    card.removeAttribute('style');
     
-    // Синхронизируем высоту и размеры, чтобы стекло идеально сидело по форме карточки
+    // Принудительно делаем контент карточки видимым поверх нашего прозрачного стекла
+    card.style.position = 'absolute';
+    card.style.display = 'flex';
+    card.style.flexDirection = 'column';
+    card.style.zIndex = '2';
+    card.style.background = 'transparent';
+    card.style.backgroundColor = 'transparent';
+    card.style.border = 'none';
+    card.style.boxShadow = 'none';
+    
+    // Синхронизируем размеры независимого стекла под форму карточки
     glassBg.style.height = `${card.offsetHeight}px`;
     
-    // Вычисляем плавную математическую волну парения (6 секунд на цикл)
+    // Вычисляем абсолютно плавную математическую волну парения (6 секунд на цикл)
     const floatWave = Math.sin(elapsed / 6000 * Math.PI * 2);
     const translateY = floatWave * 8; // Смещение вверх-вниз на 8 пикселей
     
     // Двигаем синхронно И карточку, И наш независимый фон в один такт
+    card.style.top = '50%';
+    card.style.left = '50%';
     card.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
+    
+    glassBg.style.top = '50%';
+    glassBg.style.left = '50%';
     glassBg.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
     
     // АНИМАЦИЯ ГРАДИЕНТА (плавно крутим цвета на рамке, скорость регулируется числом 25)
     const gradientPos = (elapsed / 25) % 400;
     glassBg.style.backgroundPosition = `0% 0%, ${gradientPos}% 50%`;
     
-    // Запускаем нативный игровой цикл рендеринга браузера
+    // Запускаем нативный игровой цикл рендеринга браузера (60-144+ FPS)
     requestAnimationFrame(renderLoop);
   }
   
   // Запускаем бесконечную плавную отрисовку
   requestAnimationFrame(renderLoop);
 })();
-
