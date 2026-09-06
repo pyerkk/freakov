@@ -524,50 +524,82 @@ body {
 /* ============================================================
    СТИЛЬНЫЙ УГЛОВОЙ ВИДЖЕТ СЧЁТЧИКА (МАТОВОЕ СТЕКЛО)
    ============================================================ */
+/* ============================================================
+   СТИЛЬНЫЙ УГЛОВОЙ ВИДЖЕТ СЧЁТЧИКА (МАТОВОЕ СТЕКЛО FREAKOV)
+   ============================================================ */
 .views-counter-corner {
   position: fixed;
-  bottom: 20px;   /* Отступ 20px от нижнего края экрана */
-  right: 20px;    /* Отступ 20px от правого края экрана */
-  z-index: 9;     /* Поверх фона, но под экраном-заставкой */
+  bottom: 20px;   /* Отступ от нижнего края экрана */
+  right: 20px;    /* Отступ от правого края экрана */
+  z-index: 9;
 
   display: flex;
   align-items: center;
-  gap: 8px;       /* Расстояние между глазом и цифрой */
-  padding: 10px 14px;
+  justify-content: center;
+  gap: 4px;       /* Расстояние между глазом и цифрой */
+  padding: 8px 12px;
 
-  /* Эффект матового стекла, как у основного квадрата */
-  background: rgba(255, 255, 255, 0.03);
+  /* Эффект матового стекла, как у основы */
+  background: rgba(10, 10, 10, 0.75);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   
-  /* Идеально аккуратное сглаживание углов */
+  /* Аккуратные скругленные углы */
   border-radius: 12px;
-  
-  /* Очень тонкая бело-серая граница, чтобы подходил под стиль */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  
-  /* Текст и цвет */
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  
-  /* Мягкое появление и тень */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  opacity: 0.5;
+  
+  opacity: 0.6;
   transition: opacity 0.3s ease, transform 0.3s ease;
+
+  /* Убираем старую статичную рамку, так как делаем анимированную */
+  border: none; 
 }
 
-/* При наведении мыши виджет становится ярче и чуть приподнимается */
+/* Создаем ТОЧНО ТАКУЮ ЖЕ анимированную рамку, как у большой карточки */
+.views-counter-corner::before {
+  content: "";
+  position: absolute;
+  /* Толщина рамки — 1.5px для маленького формата */
+  inset: -1.5px; 
+  border-radius: inherit;
+  padding: 1.5px; 
+  
+  /* Тот самый бело-серый градиент */
+  background: linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff);
+  background-size: 400% 400%;
+  
+  /* Вырезаем внутреннюю часть, оставляя строго контур */
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  
+  pointer-events: none;
+  z-index: -1;
+
+  /* Запускаем точно такую же анимацию перелива, как на основе */
+  animation: borderGlow 10s linear infinite;
+  
+  /* Легкое аккуратное свечение */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.15);
+}
+
 .views-counter-corner:hover {
-  opacity: 0.9;
+  opacity: 0.95;
   transform: translateY(-2px);
 }
 
-/* Стиль для иконки глаза */
 .eye-icon {
-  font-size: 15px;
+  font-size: 14px;
   opacity: 0.8;
+  color: #ffffff;
+  display: inline-block;
+  margin-right: 2px;
 }
 
+.views-counter-corner img {
+  height: 16px; 
+  display: block;
+  filter: grayscale(1) brightness(1.5); 
+  pointer-events: none;
+}
 
