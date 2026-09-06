@@ -442,44 +442,41 @@ function initCursorTrail() {
   requestAnimationFrame(draw);
 }
 // ============================================================
-// ФИНАЛЬНЫЙ СКРИПТ: СТЕКЛО, ПЕРЕЛИВ РАМКИ И ПЛАВНОЕ ПАРЕНИЕ
+// НЕЗАВИСИМЫЙ ИГРОВОЙ ДВИЖОК ДЛЯ ИДЕАЛЬНОГО СТЕКЛА И ПАРЕНИЯ
 // ============================================================
 (function() {
   const card = document.getElementById('profile-card');
   if (!card) return;
 
-  // 1. Принудительно задаем параметры тонкой рамки и матового стекла
-  card.style.border = "2px solid transparent";
-  card.style.backdropFilter = "blur(12px)";
-  card.style.webkitBackdropFilter = "blur(12px)";
+  // Создаем отдельный независимый элемент для матового стекла и градиентной рамки
+  const glassBg = document.createElement('div');
+  glassBg.className = 'freakov-glass-bg';
+  card.parentNode.insertBefore(glassBg, card);
 
   let startTime = Date.now();
   
   function renderLoop() {
     const elapsed = Date.now() - startTime;
     
-    // АНИМАЦИЯ ПАРЕНИЯ (вычисляем идеально плавную волну времени)
+    // Синхронизируем высоту и размеры, чтобы стекло идеально сидело по форме карточки
+    glassBg.style.height = `${card.offsetHeight}px`;
+    
+    // Вычисляем абсолютно плавную математическую волну парения (6 секунд на цикл)
     const floatWave = Math.sin(elapsed / 6000 * Math.PI * 2);
-    const translateY = floatWave * 7; // ход на 7 пикселей вверх-вниз
-    card.style.marginTop = `${translateY}px`;
+    const translateY = floatWave * 8; // Смещение вверх-вниз на 8 пикселей
     
-    // АНИМАЦИЯ ГРАДИЕНТА (плавно двигаем цвета бело-серого контура)
-    const gradientPos = (elapsed / 30) % 400; // 30 — скорость перелива цветов
+    // Двигаем синхронно И карточку, И наш независимый фон в один такт
+    card.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
+    glassBg.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
     
-    // Каждую миллисекунду жестко прописываем стили поверх любых ограничений шаблона
-    card.style.backgroundImage = `
-      linear-gradient(rgba(15, 15, 15, 0.7), rgba(15, 15, 15, 0.7)), 
-      linear-gradient(90deg, #ffffff, #a1a1a6, #2c2c2e, #a1a1a6, #ffffff)
-    `;
-    card.style.backgroundOrigin = "padding-box, border-box";
-    card.style.backgroundSize = `100% 100%, 400% 400%`;
-    card.style.backgroundPosition = `0% 0%, ${gradientPos}% 50%`;
-    card.style.boxShadow = "0 0 15px rgba(255, 255, 255, 0.12)";
+    // АНИМАЦИЯ ГРАДИЕНТА (плавно крутим цвета на рамке, скорость регулируется числом 25)
+    const gradientPos = (elapsed / 25) % 400;
+    glassBg.style.backgroundPosition = `0% 0%, ${gradientPos}% 50%`;
     
-    // Запускаем игровой цикл отрисовки (гарантирует 60+ FPS без покадровых лагов)
+    // Запускаем нативный игровой цикл рендеринга браузера (60-144+ FPS, без просадок)
     requestAnimationFrame(renderLoop);
   }
   
-  // Запускаем бесконечный цикл плавного рендеринга
+  // Запускаем бесконечную плавную отрисовку
   requestAnimationFrame(renderLoop);
 })();
