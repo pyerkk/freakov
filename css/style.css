@@ -530,3 +530,52 @@ body {
   opacity: 0.8;
 }
 
+/* ============================================================
+   ДОПОЛНИТЕЛЬНЫЕ ЭФФЕКТЫ ДЛЯ ЭСТЕТИКИ (DRAIN / Y2K / CRT)
+   ============================================================ */
+
+/* 1. Эффект сканирующих линий (CRT монитор) поверх всего экрана */
+body::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), 
+              linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 999; /* Поверх всего */
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* 2. Тонкая неоновая обводка для карточки профиля */
+#profile-card {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6), 
+              inset 0 0 20px rgba(255, 255, 255, 0.02);
+}
+
+/* 3. Кастомизация текста статуса (IP) — делаем его похожим на терминал */
+#profile-status {
+  font-family: monospace, sans-serif !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-size: 14px !important;
+  letter-spacing: 2px !important;
+}
+
+/* 4. Стилизация виджета просмотров в углу */
+.views-counter-corner {
+  font-family: monospace, sans-serif !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  font-size: 12px !important;
+  background: rgba(10, 10, 10, 0.4) !important;
+}
+
+/* 5. Эффект глитча при наведении на аватар */
+#avatar {
+  transition: filter 0.3s ease, transform 0.3s ease;
+  filter: grayscale(0.3);
+}
+#avatar:hover {
+  transform: scale(1.03);
+  filter: grayscale(0) contrast(1.1) drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
