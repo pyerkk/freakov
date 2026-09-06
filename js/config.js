@@ -14,7 +14,7 @@ const CONFIG = {
   statusText:    "198.144.66.78", // text below the name (typewriter effect)
   tabTitle:      "@it6was9",      // animated browser tab title
   entrySymbol:   "⛧",            // symbol shown on the entry screen
-  musicTrackName: "тёмный принц - охота на уток", // Название трека на карточке
+  musicTrackName: "тёмный принц - охота на уток | ", // Название трека на карточке
   // ----------------------------------------------------------
   // FILES — place them in assets/ with these exact names
   // ----------------------------------------------------------
