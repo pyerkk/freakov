@@ -83,25 +83,14 @@
 
     </div>
 
-    <!-- ОТДЕЛЬНЫЙ ВИДЖЕТ СЧЁТЧИКА В УГЛУ ЭКРАНА -->
+    <!-- УГЛОВОЙ ВИДЖЕТ СЧЁТЧИКА С АНИМИРОВАННОЙ РАМКОЙ -->
     <div class="views-counter-corner">
       <span class="eye-icon">👁️</span>
-      <span id="hitcount">0</span>
+      <img src="https://seeyoufarm.com" alt="Views">
     </div>
 
     <!-- Cursor sparkle trail canvas — above everything -->
     <canvas id="cursor-canvas"></canvas>
-
-    <!-- Скрипт для получения чистой цифры просмотров -->
-    <script>
-      fetch('https://hitscounter.dev')
-        .then(res => res.json())
-        .then(data => {
-          if(data && data.count) {
-            document.getElementById('hitcount').innerText = data.count;
-          }
-        }).catch(err => console.log(err));
-    </script>
 
     <!-- config.js must load before script.js -->
     <script src="js/config.js"></script>
