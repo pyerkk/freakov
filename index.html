@@ -86,21 +86,27 @@
     <!-- УГЛОВОЙ ВИДЖЕТ СЧЁТЧИКА С АНИМИРОВАННОЙ РАМКОЙ -->
     <div class="views-counter-corner">
       <span class="eye-icon">👁️</span>
-      <span id="hitcount">1</span>
+      <span id="hitcount">1653</span>
     </div>
 
     <!-- Cursor sparkle trail canvas — above everything -->
     <canvas id="cursor-canvas"></canvas>
 
-    <!-- Надежный скрипт подсчета просмотров без использования картинок -->
+    <!-- Скрипт локального подсчета посещений страницы с красивой начальной цифрой -->
     <script>
-      fetch('https://hitscounter.dev')
-        .then(res => res.json())
-        .then(data => {
-          if(data && data.count) {
-            document.getElementById('hitcount').innerText = data.count;
-          }
-        }).catch(err => console.log("Counter error:", err));
+      // Укажи здесь любое стартовое число, которое тебе нравится:
+      const START_COUNT = 1653; 
+      
+      let storedViews = localStorage.getItem("freakov_views_v3");
+      
+      if (storedViews) {
+        storedViews = parseInt(storedViews) + 1;
+      } else {
+        storedViews = START_COUNT;
+      }
+      
+      localStorage.setItem("freakov_views_v3", storedViews);
+      document.getElementById("hitcount").innerText = storedViews;
     </script>
 
     <!-- config.js must load before script.js -->
